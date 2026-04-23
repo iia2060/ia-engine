@@ -31,7 +31,21 @@
             descripcion: "Si ves esto, el sistema funciona",
             botones: [
                 { texto: "WhatsApp Test", link: "https://wa.me/34643734158", icono: "fa-whatsapp", colorI: "#25D366" },
-                { texto: "Cerrar Prueba", link: "#", icono: "fa-times", colorI: "#e74c3c" }
+                { texto: "Cerrar Prueba", link: "#", icono: "fa-times", colorI: "#e74c3c" },// 1. Añadir en dominiosAutorizados:
+"betterworld2060.org": "betterworld2060.org",
+
+// 2. Añadir en db:
+"betterworld2060.org": {
+    nombre: "betterworld2060.org",
+    activo: true,
+    color: "#3eb300",
+    logo: "https://primary.jwwb.nl/public/h/d/b/temp-pvyubjwyjdlmnmfodqbn/betterworld2060-high-3vrs46.png",
+    descripcion: "Solución Digital Activa",
+    botones: [
+        { texto: "WhatsApp", link: "https://wa.me/34...", icono: "fa-whatsapp", colorI: "#25D366" },
+        { texto: "Llamar", link: "tel:+34...", icono: "fa-phone-alt", colorI: "#e74c3c" }
+    ]
+},
             ]
         }
     };
