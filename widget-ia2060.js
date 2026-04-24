@@ -1,22 +1,5 @@
 (function() {
-    // --- CONFIGURACION ---
-    const dominiosAutorizados = {
-        "ia2060_admin": "ia2060.com",
-        "ia2060_test": window.location.hostname,
-        "betterworld2060.org": "betterworld2060.org"
-    };
-
     const db = {
-        "ia2060_admin": {
-            nombre: "IA2060 Oficial",
-            activo: true,
-            color: "#0056b3",
-            logo: "https://primary.jwwb.nl/public/q/i/t/temp-etdynbyloisuubyjguaw/logo-ia2060-alone-high.jpg",
-            botones: [
-                { texto: "WhatsApp", link: "https://wa.me/34643734158", icono: "fa-whatsapp", colorI: "#25D366" },
-                { texto: "Llamar", link: "tel:+34604917949", icono: "fa-phone", colorI: "#e74c3c" }
-            ]
-        },
         "betterworld2060.org": {
             nombre: "Better World 2060",
             activo: true,
@@ -32,26 +15,21 @@
 
     const scriptTag = document.currentScript;
     const urlParams = new URLSearchParams(scriptTag.src.split('?')[1]);
-    const clienteId = urlParams.get('id') || "ia2060_admin";
-    const hostActual = window.location.hostname.replace('www.', '');
+    const clienteId = urlParams.get('id') || "betterworld2060.org";
     const settings = db[clienteId];
 
     if (!settings || !settings.activo) return;
-    if (clienteId !== "ia2060_test" && clienteId !== "ia2060_admin" && dominiosAutorizados[clienteId] !== hostActual) return;
 
-    // --- ESTILOS ---
     const style = document.createElement('style');
     style.innerHTML = `
-        .ia-burbuja { position: fixed!important; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #fff; border-radius: 50%; border: 2px solid ${settings.color}; z-index: 999999; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .ia-burbuja { position: fixed!important; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #fff; border-radius: 50%; border: 2px solid ${settings.color}; z-index: 2147483647; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .ia-burbuja img { width: 80%; border-radius: 50%; }
-        .ia-panel { position: fixed!important; bottom: 90px; right: 20px; width: 300px; background: #111827; border-radius: 15px; display: none; flex-direction: column; padding: 15px; color: white; z-index: 999999; border: 1px solid ${settings.color}; }
+        .ia-panel { position: fixed!important; bottom: 90px; right: 20px; width: 300px; background: #111827; border-radius: 15px; display: none; flex-direction: column; padding: 15px; color: white; z-index: 2147483647; border: 1px solid ${settings.color}; }
         .ia-panel.show { display: flex!important; }
-        .ia-btn { background: #fff!important; color: #111!important; padding: 10px; margin: 5px 0; border-radius: 8px; text-decoration: none!important; display: flex; align-items: center; font-weight: bold; font-size: 14px; }
-        .ia-btn i { margin-right: 10px; width: 20px; text-align: center; }
+        .ia-btn { background: #fff!important; color: #111!important; padding: 12px; margin: 5px 0; border-radius: 10px; text-decoration: none!important; display: flex; align-items: center; font-weight: bold; }
     `;
     document.head.appendChild(style);
 
-    // --- HTML ---
     const container = document.createElement('div');
     const bHtml = settings.botones.map(b => `<a href="${b.link}" target="_blank" class="ia-btn"><i class="fas ${b.icono}" style="color:${b.colorI}"></i> ${b.texto}</a>`).join('');
     container.innerHTML = `
@@ -61,7 +39,8 @@
     `;
     document.body.appendChild(container);
 
-    document.getElementById('ia-open-btn').onclick = () => {
+    document.getElementById('ia-open-btn').onclick = (e) => {
+        e.stopPropagation();
         document.getElementById('ia-main-panel').classList.toggle('show');
     };
 })();
